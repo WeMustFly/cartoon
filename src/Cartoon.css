@@ -1,0 +1,14 @@
+.Cartoon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  text-align: center;
+}
+
+.Princess {
+  position: absolute;
+}
+
+.Head {
+  position: absolute;
+}
