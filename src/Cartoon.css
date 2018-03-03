@@ -3,6 +3,7 @@
   left: 50%;
   top: 50%;
   text-align: center;
+  overflow: hidden;
 }
 
 .Princess {
