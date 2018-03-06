@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import { VelocityComponent } from 'velocity-react'
 import background from './pictures/background.png'
-import original from './pictures/original.png'
+// import original from './pictures/original.png'
 import princess from './pictures/princess.png'
 import head from './pictures/head.png'
 import './Cartoon.css'
@@ -48,15 +49,19 @@ class Cartoon extends Component {
       top: headTop
     }
 
+    let animationProps = {
+      duration: 200,
+      animation: {
+        rotateX: 160
+      }
+    }
+
     return (
       <div className='Cartoon' style={cartoonStyle}>
-        <img
-          className='Princess'
-          src={princess}
-          alt='Princess'
-          style={princessStyle}
-        />
-        <img className='Head' src={head} alt='Head' style={headStyle} />
+        <VelocityComponent {...animationProps}>
+          <img className='Princess' src={princess} alt='Princess' style={princessStyle} />
+          <img className='Head' src={head} alt='Head' style={headStyle} />
+        </VelocityComponent>
       </div>
     )
   }
