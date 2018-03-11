@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { VelocityComponent } from 'velocity-react'
 import img from './Princess.png'
 import './Princess.css'
 
@@ -23,17 +22,8 @@ class Princess extends Component {
 
     let style = { width, left, top }
 
-    let animationProps = {
-      duration: 200,
-      animation: {
-        rotateX: 160
-      }
-    }
-
     return (
-      <VelocityComponent {...animationProps}>
-        <img className='Princess' src={img} alt='Princess' style={style} />
-      </VelocityComponent>
+      <img className='Princess' src={img} alt='Princess' style={style} />
     )
   }
 }

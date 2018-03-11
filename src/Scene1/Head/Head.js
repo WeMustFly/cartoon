@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { VelocityComponent } from 'velocity-react'
 import img from './Head.png'
 import './Head.css'
 
@@ -23,17 +22,8 @@ class Head extends Component {
 
     let style = { width, left, top }
 
-    let animationProps = {
-      duration: 2000,
-      animation: {
-        translateY: 160
-      }
-    }
-
     return (
-      <VelocityComponent {...animationProps}>
-        <img className='Head' src={img} alt='Head' style={style} />
-      </VelocityComponent>
+      <img className='Head' src={img} alt='Head' style={style} />
     )
   }
 }
