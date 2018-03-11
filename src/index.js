@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import Cartoon from './Cartoon'
+import Scene1 from './Scene1/Scene'
 import registerServiceWorker from './registerServiceWorker'
 
-ReactDOM.render(<Cartoon />, document.getElementById('root'))
+ReactDOM.render(<Scene1 />, document.getElementById('root'))
 registerServiceWorker()
