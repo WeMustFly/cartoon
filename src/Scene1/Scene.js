@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { VelocityComponent } from 'velocity-react'
 import background from './Scene.png'
 import Head from './Head/Head'
@@ -8,9 +9,14 @@ import './Scene.css'
 class Scene extends Component {
   constructor (props) {
     super(props)
+
     this.state = {
       expanded: false
     }
+
+    this.props = props
+    this.originWidth = 5365
+    this.originHeight = 2690
   }
 
   whenToggleClicked = () => this.setState({
@@ -18,23 +24,18 @@ class Scene extends Component {
   })
 
   render () {
-    const zoom = 0.223
+    const zoom = this.props.width / this.originWidth
     const duration = 2000
     const delay = 200
 
-    const originWidth = 5365
-    const originHeigth = 2690
-
-    const width = originWidth * zoom
-    const height = originHeigth * zoom
+    const width = this.props.width
+    const height = this.originHeight * zoom
 
     const style = {
-      backgroundImage: `url(${background})`,
-      backgroundSize: 'cover',
       width: width,
       height: height,
-      marginLeft: -1 * width / 2,
-      marginTop: -1 * height / 2
+      backgroundImage: `url(${background})`,
+      backgroundSize: 'cover'
     }
 
     setTimeout(() => this.whenToggleClicked(), duration + delay)
@@ -50,6 +51,10 @@ class Scene extends Component {
       </div>
     )
   }
+}
+
+Scene.propTypes = {
+  width: PropTypes.number
 }
 
 export default Scene

@@ -1,0 +1,21 @@
+.Cartoon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  text-align: center;
+  overflow: hidden;
+}
+
+.Scenes {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.StartButton h2 {
+  cursor: pointer;
+}
+
+.OnPlay {
+  font-size: 2em;
+}
