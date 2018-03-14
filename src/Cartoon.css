@@ -14,6 +14,11 @@
 
 .StartButton h2 {
   cursor: pointer;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -50px;
+  margin-top: -50px;
 }
 
 .OnPlay {

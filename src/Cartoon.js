@@ -24,6 +24,12 @@ class Cartoon extends Component {
     })
   }
 
+  stop = () => {
+    this.setState({
+      playing: false
+    })
+  }
+
   onMouseEnter = () => {
     this.setState({
       onPlay: true
@@ -72,6 +78,7 @@ class Cartoon extends Component {
           url='Cartoon.mp3'
           playStatus={this.state.playing ? Sound.status.PLAYING : Sound.status.STOPPED}
           playFromPosition={0}
+          onFinishedPlaying={this.stop}
         />
       </div>
     )

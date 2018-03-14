@@ -11,7 +11,7 @@ class Scene extends Component {
     super(props)
 
     this.state = {
-      expanded: false
+      phase: 0
     }
 
     this.props = props
@@ -19,34 +19,61 @@ class Scene extends Component {
     this.originHeight = 2690
   }
 
-  whenToggleClicked = () => this.setState({
-    expanded: !this.state.expanded
-  })
+  nextPhase = () => {
+    this.setState({
+      phase: this.state.phase + 1
+    })
+  }
 
   render () {
     const zoom = this.props.width / this.originWidth
-    const duration = 2000
+    const duration = 5000
     const delay = 200
 
     const width = this.props.width
     const height = this.originHeight * zoom
 
+    const phase = this.state.phase
+    const expanded = this.state.expanded
+
     const style = {
       width: width,
-      height: height,
-      backgroundImage: `url(${background})`,
-      backgroundSize: 'cover'
+      height: height
     }
 
-    setTimeout(() => this.whenToggleClicked(), duration + delay)
+    const styleBackground = {
+      backgroundImage: `url(${background})`
+    }
+
+    const backgroundAnimation = {
+      opacity: phase === 0 || phase > 2 ? 0 : 1
+    }
+
+    const headAnimation = {
+      opacity: phase === 0 || phase > 2 ? 0 : 1,
+      rotateZ: phase > 1 ? 30 : 0
+    }
+
+    const princessAnimation = {
+      opacity: phase === 0 || phase > 2 ? 0 : 1,
+      translateY: phase < 2 ? -1183 * zoom : 0
+    }
+
+    setTimeout(() => this.nextPhase(), duration + delay)
 
     return (
       <div className='Scene' style={style}>
-        <VelocityComponent animation={{translateY: this.state.expanded ? 0 : -1183 * zoom}} duration={duration}>
-          <Princess zoom={zoom} expanded={this.state.expanded} left={304} top={85} />
+        <VelocityComponent
+          animation={backgroundAnimation}
+          duration={duration}
+        >
+          <div className='SceneBackground' style={styleBackground} />
         </VelocityComponent>
-        <VelocityComponent animation={{rotateZ: this.state.expanded ? 30 : 0}} duration={duration}>
-          <Head zoom={zoom} expanded={this.state.expanded} left={1960} top={1336} />
+        <VelocityComponent animation={headAnimation} duration={duration}>
+          <Head zoom={zoom} expanded={expanded} left={1960} top={1336} />
+        </VelocityComponent>
+        <VelocityComponent animation={princessAnimation} duration={duration}>
+          <Princess zoom={zoom} expanded={this.state.expanded} left={304} top={85} />
         </VelocityComponent>
       </div>
     )
