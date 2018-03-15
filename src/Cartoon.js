@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { VelocityComponent } from 'velocity-react'
+import background from './Cartoon.png'
+import Spark from './Spark/Spark'
 import Scene1 from './Scene1/Scene'
 import Sound from 'react-sound'
 import './Cartoon.css'
@@ -50,24 +53,34 @@ class Cartoon extends Component {
       marginTop: -1 * this.height / 2
     }
 
-    const startButtonStyle = {
-    }
-
     const scenesStyle = {
       width: this.width,
       height: this.height
     }
 
+    const styleBackground = {
+      backgroundImage: `url(${background})`
+    }
+
+    const sparkAnimation = {
+      opacity: this.state.onPlay ? 1 : 0
+    }
+
     return (
       <div className='Cartoon' style={style}>
         {!this.state.playing ? (
-          <div className='StartButton' style={startButtonStyle}>
-            <h2 className={this.state.onPlay ? 'OnPlay' : ''} onClick={this.play}
-              onMouseEnter={this.onMouseEnter}
-              onMouseLeave={this.onMouseLeave}
-            >
-              PLAY
-            </h2>
+          <div className='CartoonBackground' style={styleBackground}>
+            <div className='StartButton'>
+              <h2 className={this.state.onPlay ? 'OnPlay' : ''} onClick={this.play}
+                onMouseEnter={this.onMouseEnter}
+                onMouseLeave={this.onMouseLeave}
+              >
+                PLAY
+              </h2>
+            </div>
+            <VelocityComponent animation={sparkAnimation} duration={1000}>
+              <Spark zoom={this.zoom} left={3900} top={676} />
+            </VelocityComponent>
           </div>
         ) : (
           <div className='Scenes' style={scenesStyle}>
