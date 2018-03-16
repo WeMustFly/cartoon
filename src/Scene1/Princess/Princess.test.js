@@ -2,7 +2,7 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Princess from './Scene'
+import Princess from './Princess'
 
 it('renders without crashing', () => {
   const div = document.createElement('div')

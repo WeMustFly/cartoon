@@ -2,10 +2,10 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Spark from './Spark'
+import Scene from './Scene'
 
 it('renders without crashing', () => {
   const div = document.createElement('div')
-  ReactDOM.render(<Spark />, div)
+  ReactDOM.render(<Scene />, div)
   ReactDOM.unmountComponentAtNode(div)
 })

@@ -25,9 +25,15 @@ class Cartoon extends Component {
     this.zoom = 0.223
     this.width = 5365 * this.zoom
     this.height = 2690 * this.zoom
+
+    this.play = this.play.bind(this)
+    this.stop = this.stop.bind(this)
+    this.onMouseEnter = this.onMouseEnter.bind(this)
+    this.onMouseLeave = this.onMouseLeave.bind(this)
+    this.nextScene = this.nextScene.bind(this)
   }
 
-  play = (e) => {
+  play (e) {
     e.stopPropagation()
     this.setState({
       playing: true,
@@ -35,26 +41,26 @@ class Cartoon extends Component {
     })
   }
 
-  stop = () => {
+  stop () {
     this.setState({
       playing: false,
       scene: 0
     })
   }
 
-  onMouseEnter = () => {
+  onMouseEnter () {
     this.setState({
       onPlay: true
     })
   }
 
-  onMouseLeave = () => {
+  onMouseLeave () {
     this.setState({
       onPlay: false
     })
   }
 
-  nextScene = () => {
+  nextScene () {
     if (this.state.scene < 4) {
       this.setState({
         scene: this.state.scene + 1

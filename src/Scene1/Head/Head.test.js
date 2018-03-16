@@ -2,7 +2,7 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Head from './Scene'
+import Head from './Head'
 
 it('renders without crashing', () => {
   const div = document.createElement('div')
