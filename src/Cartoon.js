@@ -3,6 +3,12 @@ import { VelocityComponent } from 'velocity-react'
 import background from './Cartoon.png'
 import Spark from './Spark/Spark'
 import Scene1 from './Scene1/Scene'
+import Scene2 from './Scene2/Scene'
+import Scene3 from './Scene3/Scene'
+import Scene4 from './Scene4/Scene'
+import Scene5 from './Scene5/Scene'
+import Scene6 from './Scene6/Scene'
+import Scene7 from './Scene7/Scene'
 import Sound from 'react-sound'
 import './Cartoon.css'
 
@@ -11,6 +17,7 @@ class Cartoon extends Component {
     super(props)
 
     this.state = {
+      scene: 0,
       playing: false,
       onPlay: false
     }
@@ -23,13 +30,15 @@ class Cartoon extends Component {
   play = (e) => {
     e.stopPropagation()
     this.setState({
-      playing: true
+      playing: true,
+      scene: 1
     })
   }
 
   stop = () => {
     this.setState({
-      playing: false
+      playing: false,
+      scene: 0
     })
   }
 
@@ -45,7 +54,17 @@ class Cartoon extends Component {
     })
   }
 
+  nextScene = () => {
+    if (this.state.scene < 4) {
+      this.setState({
+        scene: this.state.scene + 1
+      })
+    }
+  }
+
   render () {
+    const sceneDuration = 20000
+
     const style = {
       width: this.width,
       height: this.height,
@@ -66,6 +85,10 @@ class Cartoon extends Component {
       opacity: this.state.onPlay ? 1 : 0
     }
 
+    if (this.state.playing) {
+      setTimeout(() => this.nextScene(), sceneDuration)
+    }
+
     return (
       <div className='Cartoon' style={style}>
         {!this.state.playing ? (
@@ -84,7 +107,29 @@ class Cartoon extends Component {
           </div>
         ) : (
           <div className='Scenes' style={scenesStyle}>
-            <Scene1 width={this.width} />
+            {{
+              1: (
+                <Scene1 width={this.width} duration={sceneDuration} />
+              ),
+              2: (
+                <Scene2 width={this.width} duration={sceneDuration} />
+              ),
+              3: (
+                <Scene3 width={this.width} duration={sceneDuration} />
+              ),
+              4: (
+                <Scene4 width={this.width} duration={sceneDuration} />
+              ),
+              5: (
+                <Scene5 width={this.width} duration={sceneDuration} />
+              ),
+              6: (
+                <Scene6 width={this.width} duration={sceneDuration} />
+              ),
+              7: (
+                <Scene7 width={this.width} duration={sceneDuration} />
+              )
+            }[this.state.scene]}
           </div>
         )}
         <Sound
