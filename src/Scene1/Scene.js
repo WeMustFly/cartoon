@@ -1,7 +1,7 @@
 import BaseScene from '../Scene/Scene'
 import background from './Scene.png'
-import Head from './Head/Head.png'
-import Princess from './Princess/Princess.png'
+import Head from './Head.png'
+import Princess from './Princess.png'
 import './Scene.css'
 
 class Scene extends BaseScene {
@@ -10,7 +10,7 @@ class Scene extends BaseScene {
 
     this.background = background
 
-    const PieceHead = {
+    this.pieces.push({
       img: Head,
       width: 260,
       left: 1960,
@@ -21,12 +21,11 @@ class Scene extends BaseScene {
           rotateZ: phase > 1 ? 30 : 0
         }
       }
-    }
-    this.pieces.push(PieceHead)
+    })
 
     /** @TODO: ZOOM!1 */
     const zoom = this.zoom
-    const PiecePrincess = {
+    this.pieces.push({
       img: Princess,
       width: 737,
       left: 304,
@@ -37,8 +36,7 @@ class Scene extends BaseScene {
           translateY: phase < 2 ? -1183 * zoom : 0
         }
       }
-    }
-    this.pieces.push(PiecePrincess)
+    })
   }
 }
 

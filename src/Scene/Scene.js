@@ -22,7 +22,6 @@ class Scene extends Component {
     this.zoom = this.props.width / this.originWidth
 
     this.duration = parseInt(this.props.duration / 4)
-    this.delay = 200
 
     this.pieces = []
 
@@ -51,7 +50,7 @@ class Scene extends Component {
       opacity: phase === 0 || phase > 2 ? 0 : 1
     }
 
-    setTimeout(() => this.nextPhase(), this.duration + this.delay)
+    setTimeout(() => this.nextPhase(), this.duration)
 
     return (
       <div className='Scene' style={style}>

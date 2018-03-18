@@ -2,10 +2,10 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Head from './Head'
+import Scenes from './Scenes'
 
 it('renders without crashing', () => {
   const div = document.createElement('div')
-  ReactDOM.render(<Head />, div)
+  ReactDOM.render(<Scenes />, div)
   ReactDOM.unmountComponentAtNode(div)
 })
