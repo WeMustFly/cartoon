@@ -13,15 +13,16 @@ class Scene extends Component {
       phase: 0
     }
 
-    this.props = props
     this.originWidth = 5365
     this.originHeight = 2690
 
+    this.zoom = props.width / this.originWidth
+    this.width = props.width
+    this.height = this.originHeight * this.zoom
+
     this.background = background
 
-    this.zoom = this.props.width / this.originWidth
-
-    this.duration = parseInt(this.props.duration / 4)
+    this.duration = parseInt(props.duration / 4, 10)
 
     this.pieces = []
 

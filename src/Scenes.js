@@ -14,9 +14,10 @@ class Scenes extends Component {
     super(props)
 
     this.state = {
-      scene: 1
+      scene: props.scene || 1
     }
 
+    this.scene = props.scene
     this.zoom = props.zoom
     this.width = props.width
     this.height = props.height
@@ -42,7 +43,9 @@ class Scenes extends Component {
       height: this.height
     }
 
-    setTimeout(() => this.nextScene(), this.sceneDuration + this.delay)
+    if (!this.scene) {
+      setTimeout(() => this.nextScene(), this.sceneDuration + this.delay)
+    }
 
     return (
       <div className='Scenes' style={style}>
@@ -63,6 +66,7 @@ class Scenes extends Component {
 }
 
 Scenes.propTypes = {
+  scene: PropTypes.number,
   zoom: PropTypes.number,
   width: PropTypes.number,
   height: PropTypes.number,

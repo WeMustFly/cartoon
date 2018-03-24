@@ -6,6 +6,8 @@ import Scenes from './Scenes'
 import Sound from 'react-sound'
 import './Cartoon.css'
 
+const DEBUG_SCENE = 2
+
 class Cartoon extends Component {
   constructor (props) {
     super(props)
@@ -70,7 +72,7 @@ class Cartoon extends Component {
 
     return (
       <div className='Cartoon' style={style}>
-        {!this.state.playing ? (
+        {!this.state.playing && !DEBUG_SCENE ? (
           <div className='CartoonBackground' style={styleBackground}>
             <div className='StartButton'>
               <h2 className={this.state.onPlay ? 'OnPlay' : ''} onClick={this.play}
@@ -85,7 +87,7 @@ class Cartoon extends Component {
             </VelocityComponent>
           </div>
         ) : (
-          <Scenes zoom={this.zoom} width={this.width} height={this.height} sceneDuration={sceneDuration} />
+          <Scenes scene={DEBUG_SCENE} zoom={this.zoom} width={this.width} height={this.height} sceneDuration={sceneDuration} />
         )}
         <Sound
           url='Cartoon.mp3'

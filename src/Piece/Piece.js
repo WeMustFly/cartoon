@@ -26,4 +26,12 @@ class Piece extends Component {
   }
 }
 
+Piece.propTypes = {
+  width: PropTypes.number,
+  zoom: PropTypes.number,
+  left: PropTypes.number,
+  top: PropTypes.number,
+  img: PropTypes.string
+}
+
 export default Piece
