@@ -5,6 +5,8 @@ import Piece from '../Piece/Piece'
 import background from './Scene.png'
 import './Scene.css'
 
+const NUMBER_OF_PHASES = 4
+
 class Scene extends Component {
   constructor (props) {
     super(props)
@@ -22,7 +24,14 @@ class Scene extends Component {
 
     this.background = background
 
-    this.duration = parseInt(props.duration / 4, 10)
+    const duration = parseInt(props.duration / NUMBER_OF_PHASES, 10)
+    this.duration = [
+      0,
+      parseInt(duration / 2, 10),
+      duration,
+      duration,
+      parseInt(duration / 2, 10)
+    ]
 
     this.pieces = []
 
@@ -51,7 +60,9 @@ class Scene extends Component {
       opacity: phase === 0 || phase > 2 ? 0 : 1
     }
 
-    setTimeout(() => this.nextPhase(), this.duration)
+    if (this.phase <= NUMBER_OF_PHASES) {
+      setTimeout(() => this.nextPhase(), this.duration[phase])
+    }
 
     return (
       <div className='Scene' style={style}>
