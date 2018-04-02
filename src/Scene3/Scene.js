@@ -1,68 +1,65 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { VelocityComponent } from 'velocity-react'
-import background from './SceneFull.png'
+import BaseScene from '../Scene/Scene'
+import background from './Scene.png'
+import Armchair from './Armchair.png'
+import Fire from './Fire.png'
+import Snow from './Snow.png'
+import Spark from './Spark.png'
 import './Scene.css'
 
-class Scene extends Component {
+class Scene extends BaseScene {
   constructor (props) {
     super(props)
 
-    this.state = {
-      phase: 0
-    }
+    this.background = background
 
-    this.props = props
-    this.originWidth = 5365
-    this.originHeight = 2690
-  }
+    this.pieces.push({
+      img: Armchair,
+      width: 692,
+      left: 1887,
+      top: 1345,
+      animation: function (phase) {
+        return {
+          opacity: phase === 0 || phase > 2 ? 0 : 1
+        }
+      }
+    })
 
-  nextPhase = () => {
-    this.setState({
-      phase: this.state.phase + 1
+    this.pieces.push({
+      img: Fire,
+      width: 388,
+      left: 1237,
+      top: 941,
+      animation: function (phase) {
+        return {
+          opacity: phase === 0 || phase > 2 ? 0 : 1
+        }
+      }
+    })
+
+    this.pieces.push({
+      img: Snow,
+      width: 700,
+      left: 1995,
+      top: -1264,
+      animation: function (phase) {
+        return {
+          opacity: phase === 0 || phase > 2 ? 0 : 1
+        }
+      }
+    })
+
+    this.pieces.push({
+      img: Spark,
+      width: 240,
+      left: 807,
+      top: 524,
+      animation: function (phase) {
+        return {
+          opacity: phase === 0 || phase > 2 ? 0 : 1
+        }
+      }
     })
   }
-
-  render () {
-    const zoom = this.props.width / this.originWidth
-    const duration = 5000
-    const delay = 200
-
-    const width = this.props.width
-    const height = this.originHeight * zoom
-
-    const phase = this.state.phase
-
-    const style = {
-      width: width,
-      height: height
-    }
-
-    const styleBackground = {
-      backgroundImage: `url(${background})`
-    }
-
-    const backgroundAnimation = {
-      opacity: phase === 0 || phase > 2 ? 0 : 1
-    }
-
-    setTimeout(() => this.nextPhase(), duration + delay)
-
-    return (
-      <div className='Scene' style={style}>
-        <VelocityComponent
-          animation={backgroundAnimation}
-          duration={duration}
-        >
-          <div className='SceneBackground' style={styleBackground} />
-        </VelocityComponent>
-      </div>
-    )
-  }
-}
-
-Scene.propTypes = {
-  width: PropTypes.number
 }
 
 export default Scene
