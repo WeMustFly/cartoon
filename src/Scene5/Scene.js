@@ -10,6 +10,8 @@ class Scene extends BaseScene {
 
     this.background = background
 
+    const pawsDelta = 50 * this.zoom
+
     this.pieces.push({
       img: Paws1,
       width: 805,
@@ -17,7 +19,8 @@ class Scene extends BaseScene {
       top: -31,
       animation: function (phase) {
         return {
-          opacity: phase === 0 || phase > 2 ? 0 : 1
+          opacity: phase === 0 || phase > 2 ? 0 : 1,
+          translateX: (phase < 2 ? '-' + pawsDelta : 0)
         }
       }
     })
@@ -29,7 +32,9 @@ class Scene extends BaseScene {
       top: 0,
       animation: function (phase) {
         return {
-          opacity: phase === 0 || phase > 2 ? 0 : 1
+          opacity: phase === 0 || phase > 2 ? 0 : 1,
+          translateX: (phase < 1 ? '-' + pawsDelta : 0)
+          // translateX: (phase % 2 === 0 ? '+=' : 0) + pawsDelta
         }
       }
     })
