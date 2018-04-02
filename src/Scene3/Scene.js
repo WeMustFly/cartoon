@@ -19,31 +19,40 @@ class Scene extends BaseScene {
       top: 1345,
       animation: function (phase) {
         return {
-          opacity: phase === 0 || phase > 2 ? 0 : 1
+          opacity: phase === 0 || phase > 2 ? 0 : 1,
+          rotateZ: phase % 2 === 1 ? '+=10' : '-=10'
         }
       }
     })
 
+    const zoom = this.zoom
+    const fireWidth = 388
+    const fireDelta = 30
     this.pieces.push({
       img: Fire,
-      width: 388,
+      width: fireWidth,
       left: 1237,
-      top: 941,
+      top: 943,
       animation: function (phase) {
         return {
-          opacity: phase === 0 || phase > 2 ? 0 : 1
+          opacity: phase === 0 || phase > 2 ? 0 : 1,
+          width: phase % 2 === 1 ? (fireWidth - fireDelta) * zoom : fireWidth * zoom,
+          translateY: phase % 2 === 1 ? fireDelta * zoom : 0,
+          translateX: phase % 2 === 1 ? fireDelta * zoom : 0
         }
       }
     })
 
+    const snowTop = -1464
     this.pieces.push({
       img: Snow,
       width: 700,
       left: 1995,
-      top: -1264,
+      top: snowTop,
       animation: function (phase) {
         return {
-          opacity: phase === 0 || phase > 2 ? 0 : 1
+          opacity: phase === 0 || phase > 2 ? 0 : 1,
+          translateY: parseInt(260 * (phase - (phase <= 2 ? 0 : phase - 2)) * zoom, 10)
         }
       }
     })
@@ -55,7 +64,10 @@ class Scene extends BaseScene {
       top: 524,
       animation: function (phase) {
         return {
-          opacity: phase === 0 || phase > 2 ? 0 : 1
+          opacity: phase === 0 || phase === 1 || phase > 2 ? 0 : 1,
+          translateY: phase === 1 ? 500 * zoom : 0,
+          translateX: phase === 1 ? 500 * zoom : 0,
+          rotateZ: phase > 1 ? 50 : 0
         }
       }
     })
