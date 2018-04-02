@@ -6,7 +6,7 @@ import Scenes from './Scenes'
 import Sound from 'react-sound'
 import './Cartoon.css'
 
-const DEBUG_SCENE = 1
+const DEBUG_SCENE = false
 
 class Cartoon extends Component {
   constructor (props) {
@@ -53,7 +53,7 @@ class Cartoon extends Component {
   }
 
   render () {
-    const sceneDuration = 20000
+    const sceneDuration = 13000
 
     const style = {
       width: this.width,
