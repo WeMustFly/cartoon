@@ -1,10 +1,19 @@
 import React, { Component } from 'react'
 import { VelocityComponent } from 'velocity-react'
+import preloader from 'preloader'
 import background from './Cartoon.png'
 import Spark from './Spark/Spark'
 import Scenes from './Scenes'
 import Sound from 'react-sound'
 import './Cartoon.css'
+
+import Scene1Image from './Scene1/Scene.png'
+import Scene2Image from './Scene2/Scene.png'
+import Scene3Image from './Scene3/Scene.png'
+import Scene4Image from './Scene4/Scene.png'
+import Scene5Image from './Scene5/Scene.png'
+import Scene6Image from './Scene6/Scene.png'
+import Scene7Image from './Scene7/Scene.png'
 
 const DEBUG_SCENE = false
 
@@ -13,6 +22,7 @@ class Cartoon extends Component {
     super(props)
 
     this.state = {
+      ready: false,
       playing: false,
       onPlay: false
     }
@@ -20,6 +30,20 @@ class Cartoon extends Component {
     this.zoom = 0.223
     this.width = 5365 * this.zoom
     this.height = 2690 * this.zoom
+
+    const loader = preloader({
+      xhrImages: false
+    })
+    loader.on('progress', progress => console.log(progress))
+    loader.on('complete', () => this.setState({ ready: true }))
+    loader.add(Scene1Image)
+    loader.add(Scene2Image)
+    loader.add(Scene3Image)
+    loader.add(Scene4Image)
+    loader.add(Scene5Image)
+    loader.add(Scene6Image)
+    loader.add(Scene7Image)
+    loader.load()
 
     this.play = this.play.bind(this)
     this.stop = this.stop.bind(this)
@@ -75,12 +99,16 @@ class Cartoon extends Component {
         {!this.state.playing && !DEBUG_SCENE ? (
           <div className='CartoonBackground' style={styleBackground}>
             <div className='StartButton'>
-              <h2 className={this.state.onPlay ? 'OnPlay' : ''} onClick={this.play}
-                onMouseEnter={this.onMouseEnter}
-                onMouseLeave={this.onMouseLeave}
-              >
-                PLAY
-              </h2>
+              {this.state.ready ? (
+                <h2 className={this.state.onPlay ? 'OnPlay' : ''} onClick={this.play}
+                  onMouseEnter={this.onMouseEnter}
+                  onMouseLeave={this.onMouseLeave}
+                >
+                  PLAY
+                </h2>
+              ) : (
+                <h2>On loading...</h2>
+              )}
             </div>
             <VelocityComponent animation={sparkAnimation} duration={1000}>
               <Spark zoom={this.zoom} left={3900} top={676} />
