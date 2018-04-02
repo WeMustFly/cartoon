@@ -31,8 +31,12 @@ class Scenes extends Component {
 
   nextScene () {
     if (this.state.scene < this.scenes.length) {
+      if (this.scene) {
+        this.setState({ scene: 0 })
+      }
+
       this.setState({
-        scene: this.state.scene + 1
+        scene: this.scene || this.state.scene + 1
       })
     }
   }
@@ -43,10 +47,7 @@ class Scenes extends Component {
       height: this.height
     }
 
-    console.log('Scenes scene' + this.scene)
-    if (!this.scene) {
-      setTimeout(() => this.nextScene(), this.sceneDuration + this.delay)
-    }
+    setTimeout(() => this.nextScene(), this.sceneDuration + this.delay)
 
     return (
       <div className='Scenes' style={style}>
