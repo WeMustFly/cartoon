@@ -6,7 +6,7 @@ import Scenes from './Scenes'
 import Sound from 'react-sound'
 import './Cartoon.css'
 
-const DEBUG_SCENE = 2
+const DEBUG_SCENE = 1
 
 class Cartoon extends Component {
   constructor (props) {

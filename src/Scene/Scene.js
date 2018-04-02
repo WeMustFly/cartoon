@@ -26,10 +26,9 @@ class Scene extends Component {
 
     const duration = parseInt(props.duration / NUMBER_OF_PHASES, 10)
     this.duration = [
-      0,
       parseInt(duration / 2, 10),
       duration,
-      duration,
+      duration * 2,
       parseInt(duration / 2, 10)
     ]
 
@@ -49,6 +48,7 @@ class Scene extends Component {
     const height = this.originHeight * this.zoom
 
     const phase = this.state.phase
+    const phaseDuration = this.duration[phase]
 
     const style = { width, height }
 
@@ -60,20 +60,20 @@ class Scene extends Component {
       opacity: phase === 0 || phase > 2 ? 0 : 1
     }
 
-    if (this.phase <= NUMBER_OF_PHASES) {
-      setTimeout(() => this.nextPhase(), this.duration[phase])
+    if (phase <= NUMBER_OF_PHASES) {
+      setTimeout(() => this.nextPhase(), phaseDuration)
     }
 
     return (
       <div className='Scene' style={style}>
         <VelocityComponent
           animation={backgroundAnimation}
-          duration={this.duration}
+          duration={phaseDuration}
         >
           <div className='SceneBackground' style={styleBackground} />
         </VelocityComponent>
         {this.pieces.map((piece, key) =>
-          <VelocityComponent key={key} animation={piece.animation(this.state.phase)} duration={this.duration}>
+          <VelocityComponent key={key} animation={piece.animation(this.state.phase)} duration={phaseDuration}>
             <Piece img={piece.img} width={piece.width} zoom={this.zoom} left={piece.left} top={piece.top} />
           </VelocityComponent>
         )}

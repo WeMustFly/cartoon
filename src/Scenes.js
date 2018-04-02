@@ -43,6 +43,7 @@ class Scenes extends Component {
       height: this.height
     }
 
+    console.log('Scenes scene' + this.scene)
     if (!this.scene) {
       setTimeout(() => this.nextScene(), this.sceneDuration + this.delay)
     }
