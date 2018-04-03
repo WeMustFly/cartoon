@@ -15,7 +15,7 @@ import Scene5Image from './Scene5/Scene.png'
 import Scene6Image from './Scene6/Scene.png'
 import Scene7Image from './Scene7/Scene.png'
 
-const DEBUG_SCENE = false
+const DEBUG_SCENE = 0
 
 class Cartoon extends Component {
   constructor (props) {
